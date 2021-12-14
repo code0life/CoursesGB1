@@ -14,7 +14,7 @@ namespace Task1
 
             string text = $"Привет, {name}, сегодня {thisDay.ToString("D")}\n";
 
-            Console.Write(text + "\nНажмите любую клавишу для выхода");
+            Console.Write($"{text}\nНажмите любую клавишу для выхода");
             Console.ReadKey();
         }
     }
