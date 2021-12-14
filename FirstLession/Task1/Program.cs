@@ -9,10 +9,23 @@ namespace Task1
 
         static void Main(string[] args)
         {
-            string name = Environment.UserName;
-            DateTime thisDay = DateTime.Today;
+            Console.WriteLine("Вы хотите ввести своё имя? (Y-да, N-нет) ");
+            string choice = Console.ReadLine();
 
-            string text = $"Привет, {name}, сегодня {thisDay.ToString("D")}\n";
+            string name = Environment.UserName;
+            DateTime thisDay = DateTime.Now;
+
+            if (choice == "Y" || choice == "Yes" || choice == "Да")
+            {
+                Console.WriteLine("Введите свое имя: ");
+                name = Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine($"Вы не захотели вводить свое имя.\nБерем имя пользователя: {name}");
+            }
+
+            string text = $"\nПривет, {name}, сегодня {thisDay}\n";
 
             Console.Write($"{text}\nНажмите любую клавишу для выхода");
             Console.ReadKey();
