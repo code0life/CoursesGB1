@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using TaskManagerOld;
+using System.Diagnostics;
 
 namespace Task
 {
@@ -42,6 +44,31 @@ namespace Task
                     }
 
                 }
+
+                bool isLoop = true;
+
+                try
+                {
+                    Process[] allProcesses = Process.GetProcesses();
+                    Console.WriteLine($"Всего найдено запущенных процессов: {allProcesses.Length}");
+                }
+                catch
+                {
+                    Console.WriteLine($"\nОШИБКА! Невозможно получить список процессов.");
+                }
+
+                while (isLoop)
+                {
+                    TaskManager.ShowMenu();
+                    string processName = "";
+                    TaskManager.CommandAction(TaskManager.ReadInput(), ref isLoop, out processName);
+                    if(processName != "")
+                    {
+                        s.LastCloseProcess = processName;
+                        s.Save();
+                    }
+                }
+                Console.WriteLine($"Нажмите любую клавишу для выхода из программы.");
             }
             catch (ConfigurationErrorsException)
             {
@@ -58,6 +85,10 @@ namespace Task
                 if (!string.IsNullOrEmpty(s.UserName))
                 {
                     Console.WriteLine($"\nВ последний раз запускал приложение пользователь: \nЛогин: {s.UserName} \nВозраст: {s.Age} \nРод деятельности: {s.Occupation}");
+                    if(s.LastCloseProcess != "")
+                    {
+                        Console.WriteLine($"\nПоследний закрытый процесс: {s.LastCloseProcess}");
+                    }
                 }
             }
             catch (ConfigurationErrorsException)

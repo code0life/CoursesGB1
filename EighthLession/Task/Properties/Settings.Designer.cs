@@ -90,5 +90,17 @@ namespace Task.Properties {
                 this["LastUserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastCloseProcess {
+            get {
+                return ((string)(this["LastCloseProcess"]));
+            }
+            set {
+                this["LastCloseProcess"] = value;
+            }
+        }
     }
 }
